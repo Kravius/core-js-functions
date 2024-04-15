@@ -75,7 +75,7 @@ function getArgumentsCount(funcs) {
  *
  */
 function getPowerFunction(exponent) {
-  return function (num) {
+  return (num) => {
     return num ** exponent;
   };
 }
@@ -98,7 +98,7 @@ function getPolynom(...coefficients) {
     return null;
   }
 
-  return function (x) {
+  return (x) => {
     let result = 0;
 
     for (let i = 0; i < coefficients.length; i += 1) {
@@ -126,7 +126,7 @@ function getPolynom(...coefficients) {
 function memoize(func) {
   let cache = null;
   let flag = false;
-  return function (...args) {
+  return (...args) => {
     if (!flag) {
       cache = func.apply(this, args);
       flag = true;
@@ -151,7 +151,7 @@ function memoize(func) {
  * retryer() => 2
  */
 function retry(func, attempts) {
-  return function () {
+  return () => {
     for (let i = 0; i < attempts; i += 1) {
       try {
         return func();
@@ -204,7 +204,7 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 function partialUsingArguments(fn, ...args1) {
-  return function (...args) {
+  return (...args) => {
     return fn.apply(this, [...args1, ...args]);
   };
 }
@@ -229,7 +229,7 @@ function partialUsingArguments(fn, ...args1) {
 function getIdGeneratorFunction(startFrom) {
   let count = null;
   let flag = false;
-  return function () {
+  return () => {
     if (!flag) {
       count = startFrom;
       flag = true;
